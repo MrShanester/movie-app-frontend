@@ -1,18 +1,38 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <h1>NEW AND WAY BETTER MOVIE APP!</h1>
+    <div v-for="movie in movies" v-bind:key="movie.id">
+      <h2>{{ movie.title }}</h2>
+      <p></p>
+      <router-link v-bind:to="`/movies/${movie.id}`">
+        <button>Show Me More!</button>
+      </router-link>
+      <p></p>
+      <p>------------------------------------</p>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+const axios = require("axios");
 
 export default {
-  name: "Home",
-  components: {
-    HelloWorld,
+  data: function () {
+    return {
+      movies: [],
+      newMovieParams: {},
+      currentMovie: {},
+    };
+  },
+  created: function () {
+    this.indexMovies();
+  },
+  methods: {
+    indexMovies: function () {
+      axios.get("/movies").then((response) => {
+        this.movies = response.data;
+      });
+    },
   },
 };
 </script>
