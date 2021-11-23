@@ -1,6 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import MoviesEdit from "../views/moviesEdit.vue";
+import MoviesShow from "../views/moviesShow.vue";
+import MoviesNew from "../views/moviesNew.vue";
 
 Vue.use(VueRouter);
 
@@ -9,6 +12,21 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/movies/:id/edit",
+    name: "MoviesEdit",
+    component: MoviesEdit,
+  },
+  {
+    path: "/movies/:id",
+    name: "MoviesShow",
+    component: MoviesShow,
+  },
+  {
+    path: "/newmovie",
+    name: "MoviesNew",
+    component: MoviesNew,
   },
   {
     path: "/about",
